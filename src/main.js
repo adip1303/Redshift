@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { inject } from '@vercel/analytics';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -20,6 +21,8 @@ import { createSheets, updateSheetPalette } from './scene/sheets.js';
 import { createAtmosphere, updateAtmospherePalette } from './scene/atmosphere.js';
 import { PALETTES, DEFAULT_PALETTE } from './palettes/palettes.js';
 import { initControls } from './ui/controls.js';
+
+inject();
 
 const canvas = document.getElementById('canvas');
 
