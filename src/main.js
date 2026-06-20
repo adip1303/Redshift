@@ -25,6 +25,39 @@ import { initControls } from './ui/controls.js';
 inject();
 
 const canvas = document.getElementById('canvas');
+const infoToggle = document.getElementById('info-toggle');
+const infoOverlay = document.getElementById('info-overlay');
+const infoClose = document.getElementById('info-close');
+const infoContent = document.getElementById('info-content');
+infoContent.innerHTML = `
+  <h1>Redshift</h1>
+  <p class="tagline">An interactive 3D visualization of the cosmic web — the largest known structure in the universe, where galaxies, clusters, and superclusters are strung together by filaments of dark matter spanning hundreds of millions of light-years, separated by vast empty voids.</p>
+
+  <h2>What is the cosmic web?</h2>
+  <p>On the largest scales, matter in the universe isn't distributed randomly or evenly. Gravity has spent over 13 billion years pulling matter into a web-like architecture: dense knots where galaxies cluster, connected by thinner filaments of gas and dark matter, surrounded by enormous voids that are nearly empty. This structure is the cosmic web — sometimes called the "large-scale structure" of the universe.</p>
+  <p>The web didn't form by accident. In the very early universe, the cosmic microwave background shows tiny density fluctuations — regions only slightly denser than their surroundings, by about one part in 100,000. Gravity amplified those tiny differences over billions of years. The result is the foam-like, filamentary structure cosmologists observe today.</p>
+  <p>Cosmologists formally classify this structure into four components — voids, sheets, filaments, and nodes — known as the T-web classification. This visualization represents all four.</p>
+
+  <h2>What is redshift?</h2>
+  <p>Redshift is how astronomers measure both distance and motion across the universe. As the universe expands, light traveling from distant galaxies gets stretched — its wavelength increases, shifting it toward the red end of the spectrum. The further away a galaxy is, the higher its redshift.</p>
+  <p>Redshift surveys are how the cosmic web was actually discovered and mapped. By converting redshift into distance, astronomers can plot the 3D positions of galaxies across the observable universe. Surveys like the Sloan Digital Sky Survey (SDSS) produced the datasets that first revealed this structure clearly.</p>
+
+  <h2>What you're actually looking at</h2>
+  <p><strong>Filaments</strong> — the glowing threads represent the dark matter and gas filaments that form the skeleton of the cosmic web. Dark matter, which makes up roughly 85% of all matter in the universe, doesn't interact with light, so it's invisible directly. But its gravity sculpts the visible matter into the same filamentary shape.</p>
+  <p><strong>Nodes</strong> — the bright points mark galaxy clusters and superclusters, the densest regions of the cosmic web, sitting at the intersections of multiple filaments. A single node here could represent thousands of individual galaxies. The brightest, largest nodes — rendered with a warm glow halo — represent superclusters, the largest gravitationally associated structures in the universe.</p>
+  <p><strong>Fog</strong> — the subtle haze near filaments and nodes represents the warm-hot intergalactic medium: extremely diffuse gas that exists between galaxies, tracing the same filamentary structure as dark matter but at far lower density.</p>
+  <p><strong>Particles</strong> — the flowing particles represent matter actively flowing along filaments toward gravitational overdensities, exactly as gas and dark matter do in reality. Nothing in the cosmic web is static.</p>
+  <p><strong>Voids</strong> — the dark regions between filaments aren't just empty backdrop, they're voids, and they make up the overwhelming majority of the universe's volume. Voids are sparse but not perfectly empty.</p>
+
+  <h2>Why "generate new web" exists</h2>
+  <p>The cosmic web you can observe is just one particular arrangement of structure out of an effectively unlimited number of arrangements that could exist. The universe is, as far as we can tell, vastly larger than the observable portion we can ever measure, and statistically, structures similar to but distinct from our own cosmic web almost certainly exist elsewhere.</p>
+  <p>This visualization is procedurally generated rather than built from a single fixed dataset, specifically to reflect that idea. Each seed produces a structurally valid, scientifically consistent cosmic web — but a different one. There's no single "correct" cosmic web to render; there are infinite plausible ones, and clicking "New Web" generates another one of them.</p>
+`;
+infoToggle.addEventListener('click', () => infoOverlay.classList.add('active'));
+infoClose.addEventListener('click', () => infoOverlay.classList.remove('active'));
+infoOverlay.addEventListener('click', (e) => {
+  if (e.target === infoOverlay) infoOverlay.classList.remove('active');
+});
 
 export const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);

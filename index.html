@@ -30,13 +30,77 @@
         white-space: nowrap;
         z-index: 100;
       }
+      #external-links {
+        position: fixed;
+        bottom: 16px;
+        right: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        z-index: 100;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      #external-links a {
+        color: #636363;
+        text-decoration: none;
+        transition: color 0.1s ease;
+      }
+      #external-links a:hover {
+        color: #ffffff;
+      }
+      .link-divider {
+        color: #636363;
+      }
+      #info-toggle { position: fixed; top: 20px; left: 20px; width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15); color: #888888; font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; font-style: normal; cursor: pointer; z-index: 200; transition: color 0.1s ease, border-color 0.1s ease; }
+      #info-toggle:hover { color: #ffffff; border-color: rgba(255,255,255,0.4); }
+      #info-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); z-index: 300; visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+      #info-overlay.active { visibility: visible; opacity: 1; transition-delay: 0s; }
+      #info-panel { position: absolute; top: 5%; left: 5%; right: 5%; bottom: 5%; background: rgba(10,10,10,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow-y: auto; padding: 48px; box-sizing: border-box; transform: scale(0.96); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+      #info-overlay.active #info-panel { transform: scale(1); }
+      #info-panel::-webkit-scrollbar {
+        width: 18px;
+      }
+      #info-panel::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      #info-panel::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.18);
+        border-radius: 999px;
+        border: 3px solid transparent;
+        background-clip: padding-box;
+      }
+      #info-panel::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.32);
+        background-clip: padding-box;
+      }
+      #info-close { position: sticky; top: 0; float: right; background: transparent; border: none; color: #888888; font-size: 28px; cursor: pointer; transition: color 0.1s ease; }
+      #info-close:hover { color: #ffffff; }
+      #info-content { font-family: 'Courier New', monospace; color: #888888; max-width: 828px; margin: 0 auto; }
+      #info-content h1 { font-size: 30px; color: #ffffff; margin-bottom: 8px; }
+      #info-content .tagline { font-size: 16px; font-style: italic; margin-bottom: 32px; }
+      #info-content h2 { font-size: 19px; color: #cccccc; margin-top: 32px; margin-bottom: 12px; }
+      #info-content p { font-size: 15px; line-height: 1.7; margin-bottom: 14px; }
     </style>
   </head>
   <body>
+    <button id="info-toggle">i</button>
     <canvas id="canvas"></canvas>
+    <div id="info-overlay">
+      <div id="info-panel">
+        <button id="info-close">×</button>
+        <div id="info-content"></div>
+      </div>
+    </div>
     <div id="control-panel"></div>
     <div id="attribution">
       Procedurally generated · Topology consistent with SDSS large-scale structure surveys
+    </div>
+    <div id="external-links">
+      <a href="https://adhiparora.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      <span class="link-divider">|</span>
+      <a href="https://github.com/adip1303" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
